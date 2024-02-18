@@ -6,7 +6,7 @@ const path = require("path");
 const Concept = require("./models/conceptModel"); 
 const Category = require("./models/categoryModel");
 //const mongoURI = process.env.MONGODB_URI;
-const mongoURI = "mongodb://127.0.0.1/reactconcepts";
+const mongoURI = process.env.MONGODB_URI || "mongodb://127.0.0.1/reactconcepts";
 
 async function seedDatabase() {
   try {
