@@ -1,0 +1,18 @@
+.codeSnippet {
+  background-color: black;
+  color: #00ff00;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: monospace;
+  overflow-x: auto;
+}
+.box {
+  margin-bottom: 20px !important;
+  box-shadow: 5px 5px #f0f0f0;
+}
+.body {
+  padding: 20px;
+}
+.search-results {
+  min-height: 0;
+}

@@ -1,0 +1,516 @@
+{
+  "categories": [
+    {
+      "name": "Introduction to React",
+      "description": "React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It allows developers to create large web applications that can change data without reloading the page, using components and state management.",
+      "concepts": [
+        {
+          "term": "What is React?",
+          "description": "React is an open-source JavaScript library developed by Facebook for building complex, interactive UIs in web and mobile applications. React's main goal is to be fast, scalable, and simple. It works only on user interfaces in the application. This corresponds to the view in the MVC template. It can be used with a combination of other JavaScript libraries or frameworks, such as Angular JS in MVC."
+        },
+        {
+          "term": "Why choose React?",
+          "description": "React is chosen for its efficiency in updating and rendering just the right components in your application when your data changes. It is encapsulated components that manage their own state, then compose them to make complex UIs. Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep the state out of the DOM."
+        }
+      ]
+    },
+    {
+      "name": "Setting Up the Development Environment",
+      "description": "Setting up a React development environment requires a few tools: Node.js, a package manager (such as npm or Yarn), a code editor, and browser developer tools for debugging.",
+      "concepts": [
+        {
+          "term": "Create React App",
+          "description": "Create React App is an officially supported way to create single-page React applications. It offers a modern build setup with no configuration.",
+          "code": "npx create-react-app my-app\ncd my-app\nnpm start"
+        },
+        {
+          "term": "Code Editors (VS Code, etc.)",
+          "description": "Code editors like Visual Studio Code, Sublime Text, or Atom enhance development with features like syntax highlighting, IntelliSense, and extensions specifically designed for React development.",
+          "code": "Download and install Visual Studio Code from https://code.visualstudio.com/. Install extensions such as 'ESLint', 'Prettier', and 'Simple React Snippets' for an enhanced coding experience."
+        },
+        {
+          "term": "Browser Developer Tools",
+          "description": "Browser developer tools, specifically the React Developer Tools extension available for Chrome and Firefox, allow developers to inspect the React component hierarchies in the virtual DOM. This tool provides insights into component props, state, and more, facilitating debugging.",
+          "code": "Install React Developer Tools from the Chrome Web Store or Firefox Add-ons. Use it by opening the browser's developer tools and selecting the 'React' tab."
+        }
+      ]
+    },
+    {
+      "name": "JSX (JavaScript XML)",
+      "description": "JSX is a syntax extension for JavaScript used in React to describe what the UI should look like. By using JSX, you can write HTML structures in the same file as your JavaScript code, enhancing the development experience by making code more readable and writing UI components easier.",
+      "concepts": [
+        {
+          "term": "Syntax and Expressions in JSX",
+          "description": "JSX allows you to embed expressions in curly braces `{}`. Any valid JavaScript expression can be included inside JSX. It gets evaluated and then rendered as part of the UI. This includes variables, function calls, and other JavaScript expressions.",
+          "code": "const name = 'React';\nconst element = <h1>Hello, {name}</h1>;"
+        },
+        {
+          "term": "Embedding JavaScript in JSX",
+          "description": "In JSX, you can embed JavaScript expressions within braces `{}`, enabling dynamic content rendering. This feature makes it straightforward to integrate JavaScript logic and data into the UI.",
+          "code": "function formatName(user) {\n  return user.firstName + ' ' + user.lastName;\n}\nconst user = {\n  firstName: 'Harper',\n  lastName: 'Perez'\n};\nconst element = <h1>{formatName(user)}</h1>;"
+        }
+      ]
+    },
+    {
+      "name": "Components",
+      "description": "Components are the heart of React's UI abstraction. They let you split the UI into independent, reusable pieces, and think about each piece in isolation. React has two types of components: Class components and Function components.",
+      "concepts": [
+        {
+          "term": "Function Components vs. Class Components",
+          "description": "Function components are simpler ways to write components that only contain a render method and don't have their own state. Class components, on the other hand, are more feature-rich, providing more capabilities like lifecycle methods and state management.",
+          "code": " "
+        },
+        {
+          "term": "Props: Passing Data to Components",
+          "description": "Props (short for properties) are a way of passing data from parent to child components, essentially making them read-only. Props are an object holding information that influences the output of render.",
+          "code": "function Welcome(props) {\n  return <h1>Hello, {props.name}</h1>;\n}"
+        },
+        {
+          "term": "State: Managing Local Data",
+          "description": "State is similar to props, but it is private and fully controlled by the component. State allows React components to change their output over time in response to user actions, network responses, and anything else.",
+          "code": "class Counter extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = { count: 0 };\n  }\n  render() {\n    return (\n      <div>\n        <p>{this.state.count}</p>\n        <button onClick={() => this.setState({ count: this.state.count + 1 })}>Increment</button>\n      </div>\n    );\n  }\n}"
+        },
+        {
+          "term": "Lifecycle Methods (for Class Components)",
+          "description": "Lifecycle methods are special methods in class components that allow you to run code at particular times in the component's lifecycle, such as mounting, updating, and unmounting.",
+          "code": "componentDidMount() {\n  console.log('Component mounted');\n}\ncomponentDidUpdate(prevProps, prevState) {\n  console.log('Component updated');\n}\ncomponentWillUnmount() {\n  console.log('Component will unmount');\n}"
+        }
+      ]
+    },
+    {
+      "name": "Handling Events",
+      "description": "Handling events with React elements is very similar to handling events on DOM elements. However, there are some syntax differences: React events are named using camelCase, rather than lowercase, and with JSX you pass a function as the event handler, rather than a string.",
+      "concepts": [
+        {
+          "term": "Synthetic Events",
+          "description": "React wraps the browser's native event into Synthetic Events, providing a cross-browser wrapper around the browser's native event system. It has the same interface as the browser's native events, including stopPropagation() and preventDefault(), except events work identically across all browsers.",
+          "code": "function handleClick(e) {\n  e.preventDefault();\n  console.log('The link was clicked.');\n}"
+        },
+        {
+          "term": "Passing Arguments to Event Handlers",
+          "description": "You can pass arguments to event handlers by using an arrow function to wrap the event handler function call with the arguments.",
+          "code": "<button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>\n<button onClick={this.deleteRow.bind(this, id)}>Delete Row</button>"
+        }
+      ]
+    },
+     {
+      "name": "State Management",
+      "description": "State management in React allows components to create and manage their own data. React provides hooks like useState for function components and setState for class components to handle state changes.",
+      "concepts": [
+        {
+          "term": "useState Hook (for Function Components)",
+          "description": "The useState hook lets you add React state to function components. Calling useState returns a pair: the current state value and a function that lets you update it.",
+          "code": "import React, { useState } from 'react';\nfunction Example() {\n  const [count, setCount] = useState(0);\n  return (\n    <div>\n      <p>You clicked {count} times</p>\n      <button onClick={() => setCount(count + 1)}>\n        Click me\n      </button>\n    </div>\n  );\n}"
+        },
+        {
+          "term": "setState (for Class Components)",
+          "description": "In class components, setState is used to update the component's state object. setState schedules an update to a component's state object and tells React that this component and its children need to be re-rendered with the updated state.",
+          "code": "class Example extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = { count: 0 };\n  }\n  render() {\n    return (\n      <div>\n        <p>You clicked {this.state.count} times</p>\n        <button onClick={() => this.setState({ count: this.state.count + 1 })}>\n          Click me\n        </button>\n      </div>\n    );\n  }\n}"
+        }
+      ]
+    },
+   {
+  "name": "Props vs. State",
+  "description": "In React, understanding the distinction and appropriate use of props and state is fundamental to component architecture. Props (properties) are immutable data passed from parent to child components, enabling component reuse and composition. State, conversely, is mutable data that is local to the component and can change over time, typically in response to user actions, making the component dynamic and interactive.",
+  "concepts": [
+    {
+      "term": "When to use Props vs. State",
+      "description": "Props should be used for static data that the component receives from its parent and does not control or modify. Use state for data that the component itself will change. The key distinction is that props are read-only and passed by the parent, whereas state is local and mutable by the component.",
+      "code": "function ParentComponent() {\n  const [user, setUser] = useState({ name: 'Jane Doe' });\n  return <ChildComponent userName={user.name} />;\n}\n\nfunction ChildComponent(props) {\n  // Props are read-only\n  return <h1>Hello, {props.userName}</h1>;\n}"
+    },
+    {
+      "term": "Lifting State Up",
+      "description": "When multiple components need to share and reflect the same state, it's best to lift the state up to their closest common ancestor. This technique involves moving the state to an ancestor component and passing it down to the children components via props, ensuring state consistency across the components.",
+      "code": "class Parent extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = { sharedData: '' };\n  }\n\n  handleDataChange = (newData) => {\n    this.setState({ sharedData: newData });\n  };\n\n  render() {\n    return (\n      <div>\n        <ChildA data={this.state.sharedData} />\n        <ChildB onDataChange={this.handleDataChange} />\n      </div>\n    );\n  }\n}"
+    },
+    {
+      "term": "Component Composition",
+      "description": "Component composition is a powerful pattern in React for building complex UIs from simpler, reusable components. It involves assembling components like building blocks, where props are used to pass data and behavior between them, promoting code reuse and separation of concerns.",
+      "code": "function UserProfile({ userName, children }) {\n  return (\n    <div>\n      <h2>User: {userName}</h2>\n      {children} {/* Composition here */}\n    </div>\n  );\n}\n\nfunction UserPosts({ posts }) {\n  return (\n    <div>\n      {posts.map((post) => (\n        <div key={post.id}>{post.title}</div>\n      ))}\n    </div>\n  );\n}\n\n// Usage\n<UserProfile userName='JaneDoe'>\n  <UserPosts posts={userPosts} />\n</UserProfile>"
+    }
+  ]
+},
+    {
+      "name": "Rendering Lists",
+      "description": "Rendering multiple components in React can be achieved by using the JavaScript map() function, allowing you to transform arrays into lists of elements.",
+      "concepts": [
+        {
+          "term": "map() Function",
+          "description": "The map() function is used to iterate over an array and manipulate or change data items. In React, it can be used to render a list of items as a list of components.",
+          "code": "const numbers = [1, 2, 3, 4, 5];\nconst listItems = numbers.map((number) =>\n  <li>{number}</li>\n);"
+        }
+      ]
+    },
+    {
+      "name": "Conditional Rendering",
+      "description": "Conditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators like if or the conditional operator to create elements representing the current state, and let React update the UI to match them.",
+      "concepts": [
+        {
+          "term": "Inline If with Logical && Operator",
+          "description": "You can embed any expressions in JSX by wrapping them in curly braces. This includes the JavaScript logical && operator.",
+          "code": "function Mailbox(props) {\n  const unreadMessages = props.unreadMessages;\n  return (\n    <div>\n      <h1>Hello!</h1>\n      {unreadMessages.length > 0 &&\n        <h2>\n          You have {unreadMessages.length} unread messages.\n        </h2>\n      }\n    </div>\n  );\n}"
+        },
+        {
+          "term": "Ternary Operator",
+          "description": "Another method for conditionally rendering elements inline is to use the JavaScript conditional operator condition ? true : false.",
+          "code": "const isLoggedIn = this.state.isLoggedIn;\nreturn (\n  <div>\n    The user is {isLoggedIn ? 'currently' : 'not'} logged in.\n  </div>\n);"
+        },
+        {
+          "term": "Preventing Component Rendering",
+          "description": "In some cases, you might want a component to hide itself even though it was rendered by another component. To do this, return null instead of its render output.",
+          "code": "function WarningBanner(props) {\n  if (!props.warn) {\n    return null;\n  }\n\n  return (\n    <div className=\"warning\">\n      Warning!\n    </div>\n  );\n}"
+        }
+      ]
+    },
+  {
+  "name": "Forms and User Input",
+  "description": "React offers two approaches for handling form inputs: controlled and uncontrolled components. Controlled components rely on React state for their input values, making React the source of truth for form data. Uncontrolled components, on the other hand, use refs to directly interact with the DOM elements, similar to traditional HTML form handling.",
+  "concepts": [
+    {
+      "term": "Controlled Components",
+      "description": "Controlled components have their state managed by React. In these components, form data is handled by React's state. Inputs remain in sync with the component's state, allowing for immediate validation and more complex behaviors like conditionally disabling buttons.",
+      "code": "function Form() {\n  const [value, setValue] = useState('');\n  const handleChange = event => setValue(event.target.value);\n  const handleSubmit = event => {\n    alert('A name was submitted: ' + value);\n    event.preventDefault();\n  };\n  return (\n    <form onSubmit={handleSubmit}>\n      <label>Name:\n        <input type='text' value={value} onChange={handleChange} />\n      </label>\n      <button type='submit'>Submit</button>\n    </form>\n  );\n}"
+    },
+    {
+      "term": "Handling Form Submission",
+      "description": "Form submission in React can be handled by attaching an onSubmit event to the form and preventing the default form action to handle data programmatically.",
+      "code": "const handleSubmit = (event) => {\n  event.preventDefault();\n  // Process form submission here\n};"
+    },
+    {
+      "term": "Handling Multiple Inputs",
+      "description": "When managing multiple input fields, you can use the name attribute of each input to update the state efficiently, avoiding the need for multiple handlers.",
+      "code": "const handleInputChange = (event) => {\n  const target = event.target;\n  const value = target.type === 'checkbox' ? target.checked : target.value;\n  const name = target.name;\n  setState({\n    ...state,\n    [name]: value\n  });\n};"
+    },
+    {
+      "term": "Uncontrolled Components",
+      "description": "Uncontrolled components operate more like traditional HTML form elements, with the DOM itself handling the form data. React uses refs to interact with these DOM elements.",
+      "code": "class NameForm extends React.Component {\n  constructor(props) {\n    super(props);\n    this.inputRef = React.createRef();\n  }\n  handleSubmit = (event) => {\n    alert('A name was submitted: ' + this.inputRef.current.value);\n    event.preventDefault();\n  };\n  render() {\n    return (\n      <form onSubmit={this.handleSubmit}>\n        <label>\n          Name:\n          <input type='text' ref={this.inputRef} />\n        </label>\n        <button type='submit'>Submit</button>\n      </form>\n    );\n  }\n}"
+    },
+    {
+      "term": "useRef Hook",
+      "description": "The `useRef` hook provides a way to access DOM nodes or React elements directly within functional components. It's commonly used for managing focus, reading values, or integrating with third-party DOM libraries.",
+      "code": "function TextInput() {\n  const inputEl = useRef(null);\n  const focusInput = () => inputEl.current.focus();\n  return (\n    <>\n      <input ref={inputEl} type='text' />\n      <button onClick={focusInput}>Focus the input</button>\n    </>\n  );\n}"
+    }
+  ]
+},
+   {
+  "name": "Basic Hooks",
+  "description": "Introduced in React 16.8, hooks revolutionize how you work with React by allowing you to use state and lifecycle features in functional components. This simplifies code, enhances reusability, and makes component logic more isolated and manageable.",
+  "concepts": [
+    {
+      "term": "useState",
+      "description": "The `useState` hook is a fundamental hook for adding state to functional components. It returns an array with the current state value and a function to update this value.",
+      "code": "const [count, setCount] = useState(0);\nreturn (\n  <div>\n    <p>You clicked {count} times</p>\n    <button onClick={() => setCount(count + 1)}>Click me</button>\n  </div>\n);"
+    },
+    {
+      "term": "useEffect",
+      "description": "The `useEffect` hook lets you perform side effects in function components, such as data fetching, subscriptions, or manually changing the DOM. It can replicate lifecycle behaviors from class components.",
+      "code": "useEffect(() => {\n  document.title = `You clicked ${count} times`;\n}, [count]); // Only re-run the effect if count changes"
+    },
+    {
+      "term": "Side Effects in Functional Components",
+      "description": "Side effects occur when interacting with the outside world from within a component, such as API calls, timers, and manually manipulating the DOM. The `useEffect` hook is designed to handle these side effects.",
+      "code": "useEffect(() => {\n  const timer = setTimeout(() => {\n    alert('This is a side effect');\n  }, 1000);\n  return () => clearTimeout(timer); // Cleanup the timer\n}, []); // Run once on mount"
+    },
+    {
+      "term": "Cleaning up Effects",
+      "description": "To prevent memory leaks and other issues, it's important to clean up after effects, especially for subscriptions and timers. This is done by returning a cleanup function from the `useEffect` hook.",
+      "code": "useEffect(() => {\n  const subscription = dataSource.subscribe();\n  return () => {\n    // Clean up the subscription\n    subscription.unsubscribe();\n  };\n}, [dataSource]);"
+    },
+    {
+      "term": "Custom Hooks",
+      "description": "Custom hooks allow you to extract component logic into reusable functions. By encapsulating hook logic, custom hooks can be shared across components or even projects.",
+      "code": "function useCounter(initialCount = 0) {\n  const [count, setCount] = useState(initialCount);\n  const increment = () => setCount(prevCount => prevCount + 1);\n  const decrement = () => setCount(prevCount => prevCount - 1);\n  return { count, increment, decrement };\n}"
+    },
+    {
+      "term": "Creating Reusable Logic",
+      "description": "Custom hooks are designed to create reusable logic layers. They enable you to use and share stateful logic across multiple components, improving code maintainability and reducing redundancy.",
+      "code": "function useToggle(initialValue = false) {\n  const [value, setValue] = useState(initialValue);\n  const toggle = () => setValue(v => !v);\n  return [value, toggle];\n}"
+    }
+  ]
+},
+    {
+      "name": "Styling and CSS",
+      "description": "Styling in React can be achieved using various methods, including inline styles, CSS stylesheets, CSS modules, and styled-components. Each method has its own set of advantages and best use cases.",
+      "concepts": [
+        {
+          "term": "Inline Styling",
+          "description": "Inline styling allows you to apply styles directly on React elements using the `style` attribute. It's written as an object with camelCased properties.",
+          "code": "const divStyle = {\n  color: 'blue',\n  backgroundColor: 'lightgray'\n};\n\nfunction HelloWorldComponent() {\n  return <div style={divStyle}>Hello World!</div>;\n}"
+        },
+        {
+          "term": "CSS Stylesheets",
+          "description": "You can use CSS stylesheets to style your React components. This approach involves importing a CSS file into your component file.",
+          "code": "import './App.css';\nfunction App() {\n  return <div className=\"App\">Hello World!</div>;\n}"
+        },
+        {
+          "term": "CSS Modules",
+          "description": "CSS Modules provide a way to scope CSS by automatically creating a unique class name. This prevents styling conflicts by ensuring that CSS class names are locally scoped to the component.",
+          "code": "import styles from './App.module.css';\nfunction App() {\n  return <div className={styles.App}>Hello World!</div>;\n}"
+        },
+        {
+          "term": "Styled-components",
+          "description": "Styled-components utilize tagged template literals to style your components. It removes the mapping between components and styles, enabling you to use components as a low-level styling construct.",
+          "code": "import styled from 'styled-components';\nconst Wrapper = styled.div`\n  color: white;\n  background-color: blue;\n`;\nfunction App() {\n  return <Wrapper>Hello World!</Wrapper>;\n}"
+        }
+      ]
+    },
+    {
+      "name": "Basic Routing",
+      "description": "Routing in React apps allows you to switch between different parts of an application when the URL changes. React Router is a standard library for achieving this functionality.",
+      "concepts": [
+        {
+          "term": "React Router",
+          "description": "React Router is a collection of navigational components that compose declaratively with your application. It enables dynamic routing in a web app.",
+          "code": "import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';"
+        },
+        {
+          "term": "Setting Up Routes",
+          "description": "Routes allow you to define paths and the components that will be rendered when the path matches the URL.",
+          "code": "<Router>\n  <Switch>\n    <Route path='/about'>\n      <About />\n    </Route>\n    <Route path='/users'>\n      <Users />\n    </Route>\n    <Route path='/'>\n      <Home />\n    </Route>\n  </Switch>\n</Router>"
+        },
+        {
+          "term": "Link Component",
+          "description": "The Link component is used to navigate between pages. It's similar to the anchor tag in HTML but is used to create a link within a React Router application.",
+          "code": "import { Link } from 'react-router-dom';\n<Link to='/about'>About</Link>"
+        },
+        {
+          "term": "useParams, useHistory",
+          "description": "useParams is a hook that lets you access the params of the current route. useHistory gives you access to the history instance that you may use to navigate.",
+          "code": "const { id } = useParams();\nconst history = useHistory();"
+        }
+      ]
+    },
+    {
+      "name": "Communicating with a Server",
+      "description": "React components can interact with a server to fetch or save data. This is usually done using the Fetch API or Axios in combination with effect hooks.",
+      "concepts": [
+        {
+          "term": "Fetching Data with useEffect",
+          "description": "useEffect is often used to fetch data from an API when a component mounts.",
+          "code": "useEffect(() => {\n  fetch('https://api.example.com/items')\n    .then(response => response.json())\n    .then(data => console.log(data));\n}, []);"
+        },
+        {
+          "term": "Axios vs. Fetch API",
+          "description": "Axios is a promise-based HTTP client that offers a more powerful and flexible API than the Fetch API.",
+          "code": "axios.get('https://api.example.com/items')\n  .then(response => console.log(response.data));"
+        },
+        {
+          "term": "Sending Data to a Server",
+          "description": "You can send data to a server using HTTP methods like POST. This can be achieved using both Fetch API and Axios.",
+          "code": "fetch('https://api.example.com/items', {\n  method: 'POST',\n  headers: {\n    'Content-Type': 'application/json',\n  },\n  body: JSON.stringify({ item: 'Item 1' }),\n});"
+        }
+      ]
+    },
+    {
+      "name": "Advanced Hooks",
+      "description": "Advanced hooks in React allow for more complex state and effect management, beyond what useState and useEffect can handle.",
+      "concepts": [
+        {
+          "term": "useContext",
+          "description": "useContext allows you to share state across the entire app or parts of it easily without prop drilling.",
+          "code": "const value = useContext(MyContext);"
+        },
+        {
+          "term": "useReducer",
+          "description": "useReducer is usually preferable to useState when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one.",
+          "code": "const [state, dispatch] = useReducer(reducer, initialState);"
+        },
+        {
+          "term": "useMemo and useCallback",
+          "description": "useMemo and useCallback are hooks for optimizing the performance of your React application. useMemo memoizes expensive functions, and useCallback returns a memoized callback.",
+          "code": "const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);\nconst memoizedCallback = useCallback(() => {\n  doSomething(a, b);\n}, [a, b]);"
+        }
+      ]
+    },
+ {
+  "name": "Advanced Component Patterns",
+  "description": "Advanced component patterns in React address complex challenges in application development. They facilitate code reuse, enhance component interoperability, manage state and context efficiently, and handle errors gracefully. These patterns enable developers to build scalable, maintainable, and robust applications.",
+  "concepts": [
+    {
+      "term": "Higher-Order Components (HOCs)",
+      "description": "Higher-Order Components (HOCs) are functions that take a component and return a new component with added functionality. They are used for cross-cutting concerns, such as enhancing components with additional data fetching capabilities or applying styles.",
+      "code": "function withExtraInfo(WrappedComponent) {\n  return class extends React.Component {\n    render() {\n      return <WrappedComponent {...this.props} extraInfo={'important'} />;\n    }\n  };\n}"
+    },
+    {
+      "term": "Render Props",
+      "description": "Render props refer to a technique where a component accepts a function as a prop that returns React elements. This pattern is useful for sharing dynamic data or logic across components without tightly coupling them.",
+      "code": "function MouseTracker(props) {\n  return (\n    <div>\n      {props.render({ x: 100, y: 200 })}\n    </div>\n  );\n}\n\n<MouseTracker render={({ x, y }) => (\n  <h1>Mouse is at {x}, {y}</h1>\n)} />"
+    },
+    {
+      "term": "Compound Components",
+      "description": "Compound components allow you to define a set of components that work together to form a complete UI, while keeping them decoupled. This pattern leverages React's composition model to share implicit state among a group of related components.",
+      "code": "function Tabs({ children }) {\n  const [activeIndex, setActiveIndex] = useState(0);\n  return React.Children.map(children, (child, index) => {\n    if (child.type.displayName === 'TabPanel') {\n      return React.cloneElement(child, {\n        isActive: index === activeIndex,\n        setActiveIndex: () => setActiveIndex(index)\n      });\n    }\n    return child;\n  });\n}\nTabs.Panel = function TabPanel({ isActive, children }) { return isActive ? children : null; };\nTabs.Panel.displayName = 'TabPanel';"
+    },
+    {
+      "term": "Context API",
+      "description": "The Context API facilitates the sharing of values like state and functions across all levels of the application without explicitly passing props through every level of the component tree, effectively solving the 'prop-drilling' problem.",
+      "code": "const ThemeContext = React.createContext('light');\n\nfunction App() {\n  return (\n    <ThemeContext.Provider value='dark'>\n      <Toolbar />\n    </ThemeContext.Provider>\n  );\n}\n\nfunction Toolbar(props) {\n  return (\n    <div>\n      <ThemedButton />\n    </div>\n  );\n}\n\nfunction ThemedButton() {\n  const theme = useContext(ThemeContext);\n  return <button theme={theme}>I am styled by theme context!</button>;\n}"
+    },
+    {
+      "term": "Error Boundaries",
+      "description": "Error boundaries are React components that catch JavaScript errors in their child component tree, log these errors, and display a fallback UI instead of crashing the application. They're critical for improving user experience in the face of unexpected runtime errors.",
+      "code": "class ErrorBoundary extends React.Component {\n  constructor(props) {\n    super(props);\n    this.state = { hasError: false };\n  }\n\n  static getDerivedStateFromError(error) {\n    return { hasError: true };\n  }\n\n  componentDidCatch(error, errorInfo) {\n    logErrorToMyService(error, errorInfo);\n  }\n\n  render() {\n    if (this.state.hasError) {\n      return <h1>Something went wrong.</h1>;\n    }\n    return this.props.children; \n  }\n}"
+    }
+  ]
+},
+     {
+      "name": "State Management Libraries",
+      "description": "State management libraries provide scalable solutions for managing state in complex applications, facilitating communication between components and ensuring consistent state across the whole app.",
+      "concepts": [
+        {
+          "term": "Redux",
+          "description": "Redux is a library for managing and centralizing application state. It uses a single immutable state tree, which makes it easier to track changes over time and debug or inspect the application.",
+          "code": "import { createStore } from 'redux';\nfunction reducer(state = initialState, action) {\n  switch (action.type) {\n    case 'INCREMENT':\n      return { ...state, count: state.count + 1 };\n    default:\n      return state;\n  }\n}\nconst store = createStore(reducer);"
+        },
+        {
+          "term": "React-Redux: Connecting React and Redux",
+          "description": "React-Redux provides the `connect` function and `<Provider>` component to bind Redux store with React components, allowing components to dispatch actions and subscribe to updates from the store.",
+          "code": "import { connect } from 'react-redux';\nconst mapStateToProps = state => ({ count: state.count });\nconst mapDispatchToProps = { increment };\nexport default connect(mapStateToProps, mapDispatchToProps)(CounterComponent);"
+        },
+        {
+          "term": "Context API + useReducer for Global State",
+          "description": "The combination of Context API and useReducer hook offers a lighter alternative to Redux for global state management, especially for simpler applications or specific parts of larger apps.",
+          "code": "const CountContext = React.createContext();\nfunction countReducer(state, action) {\n  switch (action.type) {\n    case 'increment':\n      return {count: state.count + 1};\n    default:\n      throw new Error(`Unhandled action type: ${action.type}`);\n  }\n}\nfunction CountProvider({children}) {\n  const [state, dispatch] = React.useReducer(countReducer, {count: 0});\n  return (\n    <CountContext.Provider value={{state, dispatch}}>\n      {children}\n    </CountContext.Provider>\n  );\n}"
+        }
+      ]
+    },
+    {
+      "name": "Performance Optimization",
+      "description": "Optimizing the performance of React applications involves techniques to reduce render times and improve user experience, such as memoization, code splitting, and lazy loading.",
+      "concepts": [
+        {
+          "term": "React.memo",
+          "description": "React.memo is a higher order component for memoizing component output based on props and state, preventing unnecessary renders for components with unchanged props.",
+          "code": "const MyComponent = React.memo(function MyComponent(props) {\n  /* render using props */\n});"
+        },
+        {
+          "term": "Lazy Loading Components",
+          "description": "React's lazy loading feature allows components to be loaded dynamically on demand using `React.lazy` and `Suspense`, reducing the initial load time of the application.",
+          "code": "const LazyComponent = React.lazy(() => import('./LazyComponent'));\nfunction MyComponent() {\n  return (\n    <React.Suspense fallback={<div>Loading...</div>}>\n      <LazyComponent />\n    </React.Suspense>\n  );\n}"
+        }
+      ]
+    },
+    {
+      "name": "Routing and Navigation",
+      "description": "Routing is crucial for single-page applications (SPAs) to enable navigation between different views without refreshing the page. React Router is a popular library to manage routing in React.",
+      "concepts": [
+        {
+          "term": "Advanced React Router",
+          "description": "Advanced React Router techniques, such as nested routing and protected routes, enable the creation of complex navigation patterns and control access to certain parts of an application based on user authentication.",
+          "code": "const PrivateRoute = ({ component: Component, ...rest }) => (\n  <Route {...rest} render={(props) => (\n    isAuthenticated === true ? <Component {...props} /> : <Redirect to='/login' />\n  )} />\n);"
+        }
+      ]
+    },
+    {
+      "name": "Testing",
+      "description": "Testing ensures your React applications work as expected without manually testing each component. It covers everything from unit testing individual components to end-to-end testing the entire application.",
+      "concepts": [
+        {
+          "term": "Jest",
+          "description": "Jest is a delightful JavaScript Testing Framework focused on simplicity, used for writing unit and integration tests with a focus on React applications.",
+          "code": "test('renders learn react link', () => {\n  const { getByText } = render(<App />);\n  const linkElement = getByText(/learn react/i);\n  expect(linkElement).toBeInTheDocument();\n});"
+        },
+        {
+          "term": "Testing Library",
+          "description": "The React Testing Library is a set of helpers that allow you to test React components without relying on their implementation details, focusing on how your app works from the user's perspective.",
+          "code": "import { render, screen } from '@testing-library/react';\nimport App from './App';\ntest('renders welcome message', () => {\n  render(<App />);\n  expect(screen.getByText('Welcome to React')).toBeInTheDocument();\n});"
+        }
+      ]
+    },
+  {
+  "name": "Build and Deployment",
+  "description": "The process of building and deploying a React application entails preparing the app for production environments and hosting it on a server or cloud platform, making it accessible over the internet. This involves setting environment-specific configurations, optimizing the app's build for performance, and using deployment services for hosting.",
+  "concepts": [
+    {
+      "term": "Environment Variables",
+      "description": "Environment variables allow you to store environment-specific settings and sensitive information outside of your code base. They can be accessed in React apps through the `process.env` object.",
+      "code": "console.log(process.env.REACT_APP_API_URL); // Accessing an environment variable"
+    },
+    {
+      "term": "Optimizing Production Build",
+      "description": "React provides a build script that prepares your app for production by optimizing the build for the best performance. The build is minified, and filenames include hashes for caching.",
+      "code": "npm run build // Creates an optimized production build"
+    },
+    {
+      "term": "Deployment",
+      "description": "Deploying a React application involves transferring the build artifacts to a web server or hosting service. Continuous Integration and Continuous Deployment (CI/CD) pipelines can automate this process.",
+      "code": "git push heroku master // Example of deploying a React app to Heroku via Git"
+    },
+    {
+      "term": "Netlify, Vercel, GitHub Pages",
+      "description": "Netlify, Vercel, and GitHub Pages are cloud-based hosting services that offer seamless deployment for React applications, supporting features like continuous deployment from Git across all of your projects.",
+      "code": " "
+    }
+  ]
+},
+    {
+      "name": "Next.js",
+      "description": "Next.js extends React for production-grade applications, supporting features like server-side rendering, static site generation, and built-in API routes to build full-stack applications.",
+      "concepts": [
+        {
+          "term": "Server-Side Rendering (SSR)",
+          "description": "SSR in Next.js enables rendering pages on the server and sending the fully rendered HTML to the client, improving load times and SEO.",
+          "code": "export async function getServerSideProps(context) {\n  const res = await fetch(`https://api.example.com/data`);\n  const data = await res.json();\n  return { props: { data } };\n}"
+        },
+        {
+          "term": "Static Site Generation (SSG)",
+          "description": "SSG in Next.js allows for pages to be rendered at build time and revalidated at runtime with Incremental Static Regeneration, offering fast load times and SEO benefits.",
+          "code": "export async function getStaticProps() {\n  const res = await fetch('https://api.example.com/posts');\n  const posts = await res.json();\n  return {\n    props: { posts },\n  };\n}"
+        },
+        {
+          "term": "API Routes",
+          "description": "API Routes in Next.js let you create REST endpoints as part of your Next.js application, simplifying the process of building an API.",
+          "code": "export default function handler(req, res) {\n  res.status(200).json({ message: 'Hello World' })\n}"
+        }
+      ]
+    },
+    {
+      "name": "Additional Tools and Libraries",
+      "description": "Leveraging additional tools and libraries with React enhances development efficiency, adding robust features for state management, styling, form handling, and more.",
+      "concepts": [
+        {
+          "term": "TypeScript with React",
+          "description": "TypeScript adds static typing to JavaScript, enhancing code quality and readability, especially in large-scale applications. It is increasingly used with React for developing large-scale applications.",
+          "code": "interface AppProps {\n  message: string;\n}\nconst App: React.FC<AppProps> = ({ message }) => <div>{message}</div>;"
+        },
+        {
+          "term": "Formik",
+          "description": "Formik is a popular open-source form library for React, simplifying form creation and handling, including validation and submission.",
+          "code": "import { useFormik } from 'formik';\nfunction SignupForm() {\n  const formik = useFormik({\n    initialValues: {\n      email: '',\n      password: '',\n    },\n    onSubmit: values => {\n      alert(JSON.stringify(values, null, 2));\n    },\n  });\n  return (\n    <form onSubmit={formik.handleSubmit}>\n      <input id=\"email\" type=\"email\" {...formik.getFieldProps('email')} />\n      <input id=\"password\" type=\"password\" {...formik.getFieldProps('password')} />\n      <button type=\"submit\">Submit</button>\n    </form>\n  );\n}"
+        },
+        {
+          "term": "React Query",
+          "description": "React Query is a powerful tool for fetching, caching, and updating asynchronous data in React, simplifying server state management in React applications.",
+          "code": "import { useQuery } from 'react-query';\nfunction App() {\n  const { isLoading, error, data } = useQuery('repoData', () =>\n    fetch('https://api.github.com/repos/tannerlinsley/react-query').then(res =>\n      res.json()\n    )\n  );\n  if (isLoading) return 'Loading...';\n  if (error) return 'An error has occurred: ' + error.message;\n  return (\n    <div>\n      <h1>{data.name}</h1>\n      <p>{data.description}</p>\n      <strong>👀 {data.subscribers_count}</strong>{' '}\n      <strong>✨ {data.stargazers_count}</strong>{' '}\n      <strong>🍴 {data.forks_count}</strong>\n    </div>\n  );\n}"
+        }
+      ]
+    },
+    {
+      "name": "React Patterns and Best Practices",
+      "description": "Adopting patterns and best practices in React development improves code maintainability, scalability, and performance.",
+      "concepts": [
+        {
+          "term": "Code Splitting",
+          "description": "Code splitting is a technique used to split a large JavaScript bundle into smaller chunks, loading them only when needed, to reduce the initial load time.",
+          "code": "import React, { Suspense, lazy } from 'react';\nconst OtherComponent = lazy(() => import('./OtherComponent'));\nfunction MyComponent() {\n  return (\n    <div>\n      <Suspense fallback={<div>Loading...</div>}>\n        <OtherComponent />\n      </Suspense>\n    </div>\n  );\n}"
+        },
+        {
+          "term": "Folder and File Structure",
+          "description": "An efficient folder and file structure helps in maintaining a large codebase by organizing files in a scalable and intuitive manner.",
+          "code": "src/\n  components/\n    Button/\n      index.js\n      Button.css\n  containers/\n    App/\n      index.js\n      App.css\n  utils/\n    api.js"
+        },
+        {
+          "term": "Reusable Components",
+          "description": "Creating reusable components in React promotes code reuse, reducing duplication and errors, and simplifying maintenance.",
+          "code": "function Button({ children, onClick }) {\n  return (\n    <button onClick={onClick}>\n      {children}\n    </button>\n  );\n}"
+        },
+        {
+          "term": "Accessibility (a11y) in React",
+          "description": "Ensuring accessibility in React apps makes them usable by as many people as possible, including those with disabilities. It involves semantic HTML, keyboard navigation, ARIA roles, and more.",
+          "code": "<button aria-label=\"Close\" onClick={handleClose}>\n  Close\n</button>"
+        }
+      ]
+    }
+  ]
+}
