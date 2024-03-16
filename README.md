@@ -33,7 +33,7 @@ By implementing automated content generation, this platform enhances productivit
 
 ## Deployed Application
 
-This application is deployed on Heroku, you can view the live application here [https://jsconcepts-619c289c467a.herokuapp.com/](https://jsconcepts-619c289c467a.herokuapp.com/)
+This application is deployed on Heroku, you can view the live application here [https://reactterms-9235467c0cbe.herokuapp.com/](https://reactterms-9235467c0cbe.herokuapp.com/)
 ## Installation
 
 ### Prerequisites
